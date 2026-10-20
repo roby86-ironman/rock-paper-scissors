@@ -81,9 +81,10 @@
         JEHOSUE'S SECTION: COMPUTER CHOICE
         ============================================================
 
-        TODO FOR JEHOSUE:
-        Review this function and make sure the computer randomly
-        selects one of the three possible choices.
+        Reviewed & Completed by: Jehosue
+        Function: computerPlay()
+        Randomly selects and returns "Rock", "Paper", or "Scissors"
+        with equal probability (1/3 each).
 
         REQUIRED RETURN VALUES:
         "Rock", "Paper" or "Scissors".
@@ -106,11 +107,16 @@
         JEHOSUE'S SECTION: ROUND LOGIC
         ============================================================
 
-        TODO FOR JEHOSUE:
-        Review and complete playRound().
+        Reviewed & Completed by: Jehosue
+        Function: playRound(playerSelection, computerSelection)
 
-        The function receives the player's choice and the computer's
-        choice, determines the winner and RETURNS the result.
+        Determines the round outcome according to Rock, Paper, Scissors rules:
+        - Rock beats Scissors
+        - Scissors beats Paper
+        - Paper beats Rock
+        - Same selection results in a draw
+
+        Handles case-insensitivity and extra whitespace cleanly.
 
         REQUIRED RETURN VALUES:
         "player"   = the player wins.
@@ -122,26 +128,55 @@
         The game() function needs the returned value to update scores.
         */
 
+        function normalizeSelection(selection) {
+
+            if (typeof selection !== "string") {
+                return null;
+            }
+
+            const clean = selection.trim().toLowerCase();
+
+            if (clean === "rock") {
+                return "Rock";
+            }
+
+            if (clean === "paper") {
+                return "Paper";
+            }
+
+            if (clean === "scissors" || clean === "scissor") {
+                return "Scissors";
+            }
+
+            return null;
+        }
+
         function playRound(playerSelection, computerSelection) {
 
-            if (playerSelection === computerSelection) {
+            const player = normalizeSelection(playerSelection);
+            const computer = normalizeSelection(computerSelection);
+
+            // Handle invalid selection safely
+            if (!player || !computer) {
+                return "invalid";
+            }
+
+            // Draw condition: both choices are equal
+            if (player === computer) {
                 return "draw";
             }
 
+            // Winning combinations for the player
             const playerWins =
-                (playerSelection === "Rock" &&
-                 computerSelection === "Scissors") ||
-
-                (playerSelection === "Paper" &&
-                 computerSelection === "Rock") ||
-
-                (playerSelection === "Scissors" &&
-                 computerSelection === "Paper");
+                (player === "Rock" && computer === "Scissors") ||
+                (player === "Paper" && computer === "Rock") ||
+                (player === "Scissors" && computer === "Paper");
 
             if (playerWins) {
                 return "player";
             }
 
+            // Otherwise, the computer wins
             return "computer";
         }
 
