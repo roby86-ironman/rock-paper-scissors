@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,40 +77,35 @@
 
 
         /*
-        ============================================================
-        JEHOSUE'S SECTION: COMPUTER CHOICE
-        ============================================================
 
-        TODO FOR JEHOSUE:
-        Review this function and make sure the computer randomly
-        selects one of the three possible choices.
+        JEHOSUE'S SECTION: COMPUTER CHOICE
+
+        Reviewed & Completed by: Jehosue
+        Function: computerPlay()
+        Randomly selects and returns "Rock", "Paper", or "Scissors".
 
         REQUIRED RETURN VALUES:
         "Rock", "Paper" or "Scissors".
         */
 
+        const CHOICES = Object.freeze(["Rock", "Paper", "Scissors"]);
+
         function computerPlay() {
-
-            const choices = ["Rock", "Paper", "Scissors"];
-
-            const randomIndex = Math.floor(
-                Math.random() * choices.length
-            );
-
-            return choices[randomIndex];
+            return CHOICES[Math.floor(Math.random() * CHOICES.length)];
         }
 
 
         /*
-        ============================================================
+
         JEHOSUE'S SECTION: ROUND LOGIC
-        ============================================================
 
-        TODO FOR JEHOSUE:
-        Review and complete playRound().
 
-        The function receives the player's choice and the computer's
-        choice, determines the winner and RETURNS the result.
+        Reviewed & Completed by: Jehosue
+        Function: playRound(playerSelection, computerSelection)
+
+        Evaluates the round outcome according to Rock, Paper, Scissors rules.
+        Uses recursive normalization to safely handle mixed casing & whitespace,
+        and an O(1) rule lookup table to determine the winner cleanly.
 
         REQUIRED RETURN VALUES:
         "player"   = the player wins.
@@ -122,27 +117,36 @@
         The game() function needs the returned value to update scores.
         */
 
+        const WINNING_RULES = Object.freeze({
+            Rock: "Scissors",
+            Paper: "Rock",
+            Scissors: "Paper"
+        });
+
         function playRound(playerSelection, computerSelection) {
 
+            if (typeof playerSelection !== "string" || typeof computerSelection !== "string") {
+                return "draw";
+            }
+
+            const player = playerSelection.trim().toLowerCase();
+            const computer = computerSelection.trim().toLowerCase();
+            const toTitleCase = str => str.charAt(0).toUpperCase() + str.slice(1);
+
+            // Recursive Step: Normalize unformatted inputs to canonical TitleCase
+            if (playerSelection !== toTitleCase(player) || computerSelection !== toTitleCase(computer)) {
+                return playRound(toTitleCase(player), toTitleCase(computer));
+            }
+
+            // Base Case 1: Draw condition
             if (playerSelection === computerSelection) {
                 return "draw";
             }
 
-            const playerWins =
-                (playerSelection === "Rock" &&
-                 computerSelection === "Scissors") ||
-
-                (playerSelection === "Paper" &&
-                 computerSelection === "Rock") ||
-
-                (playerSelection === "Scissors" &&
-                 computerSelection === "Paper");
-
-            if (playerWins) {
-                return "player";
-            }
-
-            return "computer";
+            // Base Case 2: Win / Loss resolution via rule lookup
+            return WINNING_RULES[playerSelection] === computerSelection
+                ? "player"
+                : "computer";
         }
 
 
@@ -307,4 +311,5 @@
     </script>
 
 </body>
+
 </html>
