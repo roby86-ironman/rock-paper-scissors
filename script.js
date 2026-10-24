@@ -155,7 +155,6 @@ function game() {
 
         console.log("🧑 You chose: " + playerSelection);
         console.log("🤖 Evil AI chose: " + computerSelection);
-
        
         if (result === "player") {
 
