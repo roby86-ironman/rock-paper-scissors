@@ -13,23 +13,21 @@ function getPlayerSelection() {
             "The Evil AI is watching you... 👀🤖"
         );
 
-  
         if (answer === null) {
             return null;
         }
 
         const choice = answer.trim().toLowerCase();
 
-        if (choice === "rock") {
-            return "Rock";
-        }
+        switch (choice) {
+            case "rock":
+                return "Rock";
 
-        if (choice === "paper") {
-            return "Paper";
-        }
+            case "paper":
+                return "Paper";
 
-        if (choice === "scissors") {
-            return "Scissors";
+            case "scissors":
+                return "Scissors";
         }
 
         alert(
@@ -65,8 +63,11 @@ function playRound(playerSelection, computerSelection) {
         return "draw";
     }
 
-    const player = playerSelection.trim().toLowerCase();
-    const computer = computerSelection.trim().toLowerCase();
+    //const player = playerSelection.trim().toLowerCase();
+    //const computer = computerSelection.trim().toLowerCase();
+
+    const player = playerSelection;
+    const computer = computerSelection;
 
     const toTitleCase = str =>
         str.charAt(0).toUpperCase() + str.slice(1);
