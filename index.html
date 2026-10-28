@@ -1,34 +1,97 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play Rock, Paper, Scissors against the Evil AI.">
-    <title>Rock, Paper, Scissors vs Evil AI</title>
+    <meta name="theme-color" content="#090509">
+    <title>Rock Paper Scissors | The Upside Down</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
+    <div class="background"></div>
+    <div class="background-overlay"></div>
+    <div class="atmosphere"></div>
+    <div class="red-glow"></div>
 
-    <!--
-        ROCK, PAPER, SCISSORS - GROUP PROJECT
+    <main class="game-container">
 
-        TEAM TASKS:
-        - ROBERTO: game(), scores, game loop and final winner.
-        - SIRAJ: player input, validation and Cancel handling.
-        - JEHOSUE: computerPlay() and playRound().
+        <header class="game-header">
+            <p class="eyebrow">HAWKINS, INDIANA</p>
 
-        JavaScript is stored in the external script.js file.
-        The player interacts through browser dialogs.
-        Round results and scores appear in the browser console.
-    -->
+            <h1>
+                ROCK <span class="title-red">PAPER</span><br>
+                SCISSORS
+            </h1>
 
-    <script src="script.js"></script>
+            <p class="subtitle">WELCOME TO THE UPSIDE DOWN</p>
+            <div class="title-line"></div>
+        </header>
 
+        <section class="game-panel">
+            <p class="instruction">
+                Choose your weapon. Defeat the Evil AI.
+            </p>
+
+            <div class="choices">
+                <button class="choice-btn" data-choice="rock">
+                    <span class="choice-icon">✊</span>
+                    <span class="choice-label">ROCK</span>
+                </button>
+
+                <button class="choice-btn" data-choice="paper">
+                    <span class="choice-icon">✋</span>
+                    <span class="choice-label">PAPER</span>
+                </button>
+
+                <button class="choice-btn" data-choice="scissors">
+                    <span class="choice-icon">✌️</span>
+                    <span class="choice-label">SCISSORS</span>
+                </button>
+            </div>
+
+            <div class="result-box" aria-live="polite">
+                <p class="result-heading">BATTLE REPORT</p>
+                <p id="result">The Evil AI is waiting...</p>
+                <p id="round-result">Choose your move to start the battle.</p>
+            </div>
+
+            <div class="scoreboard">
+                <div class="score-card">
+                    <span class="score-label">HUMAN</span>
+                    <span class="score-value" id="player-score">0</span>
+                </div>
+
+                <div class="score-divider">VS</div>
+
+                <div class="score-card evil">
+                    <span class="score-label">EVIL AI</span>
+                    <span class="score-value" id="computer-score">0</span>
+                </div>
+            </div>
+
+            <p class="target">FIRST TO 5 WINS</p>
+
+            <div class="progress-track" aria-label="Game progress">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <p id="game-status" class="game-status">
+                The gate is open. Let the battle begin.
+            </p>
+
+            <button id="restart-btn" class="restart-btn" hidden>
+                PLAY AGAIN
+            </button>
+        </section>
+
+        <footer class="game-footer">
+            <p>FRIENDS DON'T LIE. BUT THE EVIL AI MIGHT.</p>
+            <p class="footer-small">ENTER THE UPSIDE DOWN AT YOUR OWN RISK</p>
+        </footer>
+
+    </main>
 </body>
-
-
-
-
 </html>
