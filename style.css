@@ -1,11 +1,10 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
 :root {
     --red: #e50914;
     --red-light: #ff303b;
     --dark: #090509;
-    --panel: rgba(12, 8, 12, 0.84);
+    --panel: rgba(12, 8, 12, 0.86);
     --text: #f9faf8;
     --muted: #b8adb8;
     --blue: #3882f6;
@@ -17,16 +16,14 @@
     box-sizing: border-box;
 }
 
-html {
-    min-height: 100%;
-}
-
-body {
-    min-height: 100vh;
+html, body {
+    height: 100%;
+    min-height: 100dvh;
     background: var(--dark);
     color: var(--text);
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -121,40 +118,41 @@ body {
     animation: atmosphere-move 30s linear infinite;
 }
 
-/* MAIN LAYOUT */
+/* MAIN LAYOUT - Wide, substantial presence fitting 100dvh without scrolling */
 
 .game-container {
-    width: min(100% - 32px, 760px);
-    min-height: 100vh;
+    width: min(100% - 32px, 820px);
+    height: 100dvh;
+    max-height: 100dvh;
     margin: 0 auto;
-    padding: 45px 0 24px;
+    padding: clamp(10px, 2vh, 20px) 0 clamp(8px, 1.5vh, 16px);
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 /* HEADER */
 
 .game-header {
     text-align: center;
-    margin-bottom: 30px;
+    flex-shrink: 0;
 }
 
 .eyebrow {
     color: var(--red-light);
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.2vh, 0.82rem);
     font-weight: 700;
     letter-spacing: 0.45em;
-    margin-bottom: 14px;
+    margin-bottom: 4px;
     text-shadow: 0 0 12px rgba(229, 9, 20, 0.8);
 }
 
 h1 {
-    font-size: clamp(2.5rem, 8vw, 4.8rem);
+    font-size: clamp(2.2rem, 4.5vh, 3.5rem);
     font-weight: 900;
-    line-height: 0.95;
+    line-height: 0.96;
     letter-spacing: 0.035em;
 
     color: #fff;
@@ -172,16 +170,16 @@ h1 {
 }
 
 .subtitle {
-    margin-top: 18px;
-    font-size: 0.8rem;
+    margin-top: 6px;
+    font-size: clamp(0.72rem, 1.3vh, 0.86rem);
     letter-spacing: 0.3em;
     color: #d9cbd3;
 }
 
 .title-line {
-    width: 110px;
+    width: 95px;
     height: 3px;
-    margin: 18px auto 0;
+    margin: 8px auto 0;
 
     background: var(--red);
     box-shadow: 0 0 12px var(--red);
@@ -191,8 +189,9 @@ h1 {
 
 .game-panel {
     width: 100%;
-    padding: 30px;
+    padding: clamp(14px, 2.2vh, 24px) clamp(18px, 3.5vw, 32px);
     text-align: center;
+    flex-shrink: 1;
 
     background: var(--panel);
     border: 1px solid rgba(229, 9, 20, 0.42);
@@ -209,8 +208,8 @@ h1 {
 
 .instruction {
     color: var(--muted);
-    font-size: 0.95rem;
-    margin-bottom: 25px;
+    font-size: clamp(0.85rem, 1.5vh, 0.98rem);
+    margin-bottom: clamp(8px, 1.4vh, 16px);
 }
 
 /* CHOICE BUTTONS */
@@ -218,18 +217,18 @@ h1 {
 .choices {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
+    gap: clamp(10px, 1.8vw, 18px);
 }
 
 .choice-btn {
-    min-height: 125px;
-    padding: 18px 8px;
+    height: clamp(82px, 10.8vh, 115px);
+    padding: 10px 8px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 6px;
 
     background: rgba(255, 255, 255, 0.035);
     border: 1px solid rgba(255, 255, 255, 0.17);
@@ -247,19 +246,20 @@ h1 {
 }
 
 .choice-icon {
-    font-size: 2.5rem;
+    font-size: clamp(1.9rem, 3.4vh, 2.6rem);
+    line-height: 1;
     filter: drop-shadow(0 0 7px rgba(229, 9, 20, 0.2));
     transition: transform 0.25s ease;
 }
 
 .choice-label {
-    font-size: 0.8rem;
+    font-size: clamp(0.72rem, 1.3vh, 0.85rem);
     font-weight: 900;
     letter-spacing: 0.15em;
 }
 
 .choice-btn:hover:not(:disabled) {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     background: rgba(229, 9, 20, 0.13);
     border-color: var(--red-light);
 
@@ -286,9 +286,8 @@ h1 {
 /* RESULT AREA */
 
 .result-box {
-    min-height: 115px;
-    margin-top: 25px;
-    padding: 18px 12px;
+    margin-top: clamp(8px, 1.4vh, 16px);
+    padding: clamp(8px, 1.2vh, 14px) 12px;
 
     border-top: 1px solid rgba(229, 9, 20, 0.3);
     border-bottom: 1px solid rgba(229, 9, 20, 0.3);
@@ -296,22 +295,22 @@ h1 {
 
 .result-heading {
     color: var(--red-light);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 900;
     letter-spacing: 0.25em;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
 }
 
 #result {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.8vh, 1.2rem);
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 3px;
 }
 
 #round-result {
     color: var(--muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: clamp(0.8rem, 1.4vh, 0.92rem);
+    line-height: 1.35;
 }
 
 /* SCOREBOARD */
@@ -320,15 +319,15 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
-    margin-top: 25px;
+    gap: clamp(24px, 4.5vw, 44px);
+    margin-top: clamp(8px, 1.4vh, 16px);
 }
 
 .score-card {
-    min-width: 90px;
+    min-width: 75px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 3px;
 }
 
 .score-label {
@@ -339,8 +338,9 @@ h1 {
 }
 
 .score-value {
-    font-size: 2.8rem;
+    font-size: clamp(2.2rem, 3.8vh, 3rem);
     font-weight: 900;
+    line-height: 1;
     color: #fff;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
 }
@@ -353,13 +353,13 @@ h1 {
 .score-divider {
     color: var(--red);
     font-weight: 900;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
 }
 
 .target {
-    margin-top: 22px;
+    margin-top: clamp(6px, 1vh, 10px);
     color: var(--red-light);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 900;
     letter-spacing: 0.25em;
 }
@@ -368,9 +368,9 @@ h1 {
 
 .progress-track {
     height: 5px;
-    margin-top: 12px;
+    margin-top: clamp(4px, 0.8vh, 7px);
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 8px;
     background: rgba(255, 255, 255, 0.1);
 }
 
@@ -378,17 +378,17 @@ h1 {
     width: 0%;
     height: 100%;
     background: var(--red);
-    box-shadow: 0 0 12px var(--red);
+    box-shadow: 0 0 10px var(--red);
     transition: width 0.35s ease;
 }
 
 /* STATUS */
 
 .game-status {
-    margin-top: 20px;
+    margin-top: clamp(6px, 1vh, 10px);
     color: var(--muted);
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: clamp(0.8rem, 1.3vh, 0.9rem);
+    line-height: 1.3;
 }
 
 .game-status.winner {
@@ -400,8 +400,8 @@ h1 {
 /* RESTART BUTTON */
 
 .restart-btn {
-    margin-top: 22px;
-    padding: 13px 28px;
+    margin-top: clamp(8px, 1.2vh, 14px);
+    padding: clamp(8px, 1.2vh, 12px) clamp(20px, 2.5vw, 28px);
 
     color: white;
     background: var(--red);
@@ -409,6 +409,7 @@ h1 {
     border-radius: 5px;
 
     font-family: inherit;
+    font-size: 0.82rem;
     font-weight: 900;
     letter-spacing: 0.12em;
     cursor: pointer;
@@ -429,13 +430,14 @@ h1 {
 /* FOOTER */
 
 .game-footer {
-    margin-top: 25px;
+    margin-top: 6px;
     text-align: center;
-    line-height: 1.8;
+    line-height: 1.45;
+    flex-shrink: 0;
 }
 
 .game-footer p:first-child {
-    font-size: 0.68rem;
+    font-size: clamp(0.65rem, 1.2vh, 0.72rem);
     font-weight: 700;
     letter-spacing: 0.12em;
     color: #ded1d9;
@@ -443,7 +445,7 @@ h1 {
 
 .footer-small {
     color: #8d7d88;
-    font-size: 0.6rem;
+    font-size: clamp(0.55rem, 1vh, 0.62rem);
     letter-spacing: 0.15em;
 }
 
@@ -479,15 +481,11 @@ h1 {
     }
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE FOR NARROW MOBILE SCREENS */
 
 @media (max-width: 520px) {
     .game-container {
-        padding-top: 30px;
-    }
-
-    .game-panel {
-        padding: 22px 16px;
+        width: min(100% - 20px, 820px);
     }
 
     .choices {
@@ -495,12 +493,12 @@ h1 {
     }
 
     .choice-btn {
-        min-height: 105px;
-        padding: 12px 4px;
+        height: clamp(75px, 10vh, 95px);
+        padding: 8px 4px;
     }
 
     .choice-icon {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .choice-label {
@@ -513,7 +511,7 @@ h1 {
     }
 
     .score-value {
-        font-size: 2.3rem;
+        font-size: 2.2rem;
     }
 }
 
