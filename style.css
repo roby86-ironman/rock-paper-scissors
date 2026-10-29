@@ -32,9 +32,9 @@ html, body {
 .background {
     position: fixed;
     inset: 0;
-    z-index: -4;
+    z-index: 0;
 
-    background-image: url("./images/upside-down.png");
+    background-image: url("images/upside-down.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -138,10 +138,11 @@ html, body {
 .game-header {
     text-align: center;
     flex-shrink: 0;
+    z-index:1;
 }
 
 .eyebrow {
-    color: var(--red-light);
+    color: #ffffff;
     font-size: clamp(0.7rem, 1.2vh, 0.82rem);
     font-weight: 700;
     letter-spacing: 0.45em;
@@ -434,6 +435,7 @@ h1 {
     text-align: center;
     line-height: 1.45;
     flex-shrink: 0;
+    z-index:1;
 }
 
 .game-footer p:first-child {
