@@ -120,6 +120,10 @@ function endGame(winner) {
     }
 }
 
+
+
+
+
 // Reset the game
 function restartGame() {
     playerScore = 0;
