@@ -1,7 +1,6 @@
 
 "use strict";
 
-// DOM elements
 const choiceButtons = document.querySelectorAll(".choice-btn");
 const playerScoreDisplay = document.querySelector("#player-score");
 const computerScoreDisplay = document.querySelector("#computer-score");
@@ -11,7 +10,7 @@ const gameStatusDisplay = document.querySelector("#game-status");
 const progressFill = document.querySelector("#progress-fill");
 const restartButton = document.querySelector("#restart-btn");
 
-// Game settings
+
 const WINNING_SCORE = 5;
 
 const CHOICES = Object.freeze([
@@ -20,23 +19,23 @@ const CHOICES = Object.freeze([
     "scissors"
 ]);
 
-// Game state
+
 let playerScore = 0;
 let computerScore = 0;
 let gameOver = false;
 
-// Generate the computer's choice
+
 function computerPlay() {
     const randomIndex = Math.floor(Math.random() * CHOICES.length);
     return CHOICES[randomIndex];
 }
 
-// Capitalize a choice for display
+
 function formatChoice(choice) {
     return choice.charAt(0).toUpperCase() + choice.slice(1);
 }
 
-// Determine the winner of a round
+
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return "draw";
@@ -50,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
     return playerWins ? "player" : "computer";
 }
 
-// Update the score display
+
 function updateScoreboard() {
     playerScoreDisplay.textContent = playerScore;
     computerScoreDisplay.textContent = computerScore;
@@ -61,7 +60,7 @@ function updateScoreboard() {
     progressFill.style.width = `${progress}%`;
 }
 
-// Handle one round
+
 function playGame(playerSelection) {
     if (gameOver) {
         return;
@@ -96,7 +95,7 @@ function playGame(playerSelection) {
     }
 }
 
-// Finish the game
+
 function endGame(winner) {
     gameOver = true;
 
@@ -122,9 +121,6 @@ function endGame(winner) {
 
 
 
-
-
-// Reset the game
 function restartGame() {
     playerScore = 0;
     computerScore = 0;
@@ -146,7 +142,7 @@ function restartGame() {
     updateScoreboard();
 }
 
-// Connect buttons to the game
+
 choiceButtons.forEach((button) => {
     button.addEventListener("click", () => {
         const playerSelection = button.dataset.choice;
@@ -154,8 +150,8 @@ choiceButtons.forEach((button) => {
     });
 });
 
-// Connect the restart button
+
 restartButton.addEventListener("click", restartGame);
 
-// Initialize the scoreboard
+
 updateScoreboard();
